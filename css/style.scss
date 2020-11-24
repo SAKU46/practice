@@ -1,0 +1,1051 @@
+/* colorに関する変数 */
+$font-black: #333333;
+$font-white: #ffffff;
+$font-gray: #cecece;
+
+/* background-colorに関する変数 */
+$header-black: #222222;
+$bg-black: #000000;
+$bg-gray1: #f0f0f0;
+$bg-gray2: #f2f2f2;
+$footer-gray: #525252;
+
+/* font-familyに関する変数 */
+$font_yu: "游ゴシック体", sans-serif;
+$font_mont: "Montserrat", sans-serif;
+$font_noto: "Noto Sans JP", sans-serif;
+
+/* mixin */
+@mixin tab {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+/* HTML全体に対する指定 */
+html * {
+  box-sizing: border-box;
+  letter-spacing: 0px;
+  font-weight: normal;
+}
+body {
+  font-size: 1.6rem;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style-type: none;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* 共通パーツに対する指定 */
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1440px;
+  width: 100%;
+}
+.wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 20px;
+  max-width: 1100px;
+  width: 100%;
+  letter-spacing: 2.18px;
+
+  @include tab {
+    padding: 0;
+  }
+}
+
+/* button reset */
+button {
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  appearance: none;
+}
+
+.btn {
+  padding: 12px 42px;
+  max-width: 160px;
+  height: 36px;
+  background-color: $bg-black;
+  color: $font-white;
+  letter-spacing: 0.18px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: $font_mont;
+  line-height: 36px;
+}
+
+.section {
+  &__title {
+    color: $font-black;
+    letter-spacing: 2.18px;
+    font-weight: bold;
+    font-size: 3.2rem;
+    font-family: $font_mont;
+
+    @include sp {
+      font-size: 2.8rem;
+    }
+  }
+}
+
+/* header */
+.header {
+  position: fixed;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  &__logo {
+    margin-top: 4vh;
+    margin-left: 4vw;
+    svg {
+      @include tab {
+        width: 189px;
+      }
+    }
+  }
+}
+
+/* hamburger-btn close */
+.hamburger-btn {
+  position: fixed;
+  top: 5vh;
+  right: 4vw;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  &__bar {
+    &--top,
+    &--middle,
+    &--bottom {
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+      background-color: $font-white;
+    }
+    &--top {
+      transition: transform 0.3s;
+      transform: translateY(-4px);
+    }
+    &--bottom {
+      transition: transform 0.3s;
+      transform: translateY(4px);
+    }
+  }
+  &__text {
+    display: block;
+    margin-left: 5px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  &__musk,
+  &__musk--about,
+  &__musk--contact {
+    position: absolute;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: #22222299;
+  }
+}
+
+.header-list,
+.about-list,
+.contact-list {
+  position: absolute;
+  right: 0;
+  z-index: 4;
+  width: 36.1vw;
+  height: 100vh;
+  background-color: #222222f2;
+  transition: transform 0.3s;
+  transform: translateX(100%);
+
+  @include tab {
+    width: 66vw;
+  }
+  &__content {
+    padding-top: 180px;
+    text-align: center;
+  }
+  &__item {
+    margin-bottom: 30px;
+    color: $font-white;
+    letter-spacing: 1.36px;
+    font-weight: bold;
+    font-size: 2rem;
+    font-family: $font_mont;
+    a {
+      margin-bottom: 30px;
+      color: $font-white;
+      letter-spacing: 1.36px;
+      font-weight: bold;
+      font-size: 2rem;
+      font-family: $font_mont;
+    }
+    img {
+      margin-bottom: 10px;
+      width: 60px;
+      height: 60px;
+    }
+  }
+}
+
+/* jQueryでの操作 */
+.cross.bar,
+.cross.bar-about,
+.cross.bar-contact {
+  &.hamburger-btn__bar--top {
+    transform: translateY(2px) rotate(31deg);
+  }
+  &.hamburger-btn__bar--middle {
+    opacity: 0;
+  }
+  &.hamburger-btn__bar--bottom {
+    transform: translateY(-2px) rotate(-31deg);
+  }
+}
+
+.black {
+  &.bar {
+    background-color: $font-black;
+  }
+  &.text {
+    color: $font-black;
+  }
+  &.bar-about {
+    background-color: $font-black;
+  }
+  &.text-about {
+    color: $font-black;
+  }
+  &.bar-contact {
+    background-color: $font-black;
+  }
+  &.text-contact {
+    color: $font-black;
+  }
+}
+
+#site-logo.black path {
+  fill: $font-black;
+}
+#site-logo-about.black path {
+  fill: $font-black;
+}
+#site-logo-contact.black path {
+  fill: $font-black;
+}
+.stop {
+  overflow: hidden;
+}
+.header-list.slide,
+.about-list.slide,
+.contact-list.slide {
+  transition: transform 0.3s;
+  transform: translateX(0);
+}
+
+/* index.html */
+.top {
+  &__bg-img {
+    position: relative;
+    z-index: 2;
+    width: 77vw;
+    height: 86.4vh;
+    background-image: url(../img/kv-img.jpg);
+    background-position: center;
+    background-size: cover;
+  }
+  &__text {
+    position: absolute;
+    top: 21.7vh;
+    right: 0;
+    z-index: 3;
+    transform: translateX(50%);
+
+    @include tab {
+      transform: translateX(33%);
+    }
+    &--top {
+      color: $font-white;
+      font-weight: bold;
+      font-size: 2rem;
+      font-family: $font_yu;
+
+      @include tab {
+        font-size: 1.6rem;
+      }
+    }
+    &--middle {
+      margin-top: 8px;
+      color: $font-white;
+      font-weight: bold;
+      font-size: 2rem;
+      font-family: $font_mont;
+
+      @include tab {
+        font-size: 1.6rem;
+      }
+    }
+    &--bottom {
+      margin-top: 10px;
+      color: $font-white;
+      letter-spacing: 0.1px;
+      font-weight: bold;
+      font-size: 7.2rem;
+      font-family: $font_mont;
+      line-height: 1.19;
+
+      @include tab {
+        font-size: 5.6rem;
+      }
+    }
+  }
+  &__background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 54vw;
+    height: 100vh;
+    background-color: $header-black;
+  }
+}
+
+.about {
+  margin-top: 220px;
+  &__bg {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1100px;
+    max-height: 607px;
+    width: 100vw;
+    height: 55.1vw;
+    background-image: url(../img/about-img.jpg);
+
+    @include tab {
+      justify-content: center;
+      height: 480px;
+      background-image: url(../img/about-img_sp.jpg);
+      background-position: center;
+      background-size: cover;
+    }
+    @include sp {
+      height: 541px;
+    }
+  }
+
+  &__content {
+    margin-left: 50px;
+    padding: 50px 30px;
+    max-width: 590px;
+    background-color: #fffffff2;
+
+    @include tab {
+      margin: 0 30px;
+    }
+    @include sp {
+      margin: 0 15px;
+    }
+    p {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      color: $font-black;
+      font-size: 1.6rem;
+      font-family: $font_noto;
+      line-height: 2;
+
+      @include sp {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+.intro {
+  margin-top: -100px;
+  background-color: $bg-gray1;
+
+  @include tab {
+    margin-top: 0;
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 60px;
+
+    @include tab {
+      flex-direction: column;
+      margin-right: 15px;
+      margin-left: 30px;
+      padding-bottom: 40px;
+    }
+    @include sp {
+      margin-left: 20px;
+    }
+  }
+
+  &__box-1 {
+    margin-top: 180px;
+    margin-right: 10px;
+
+    @include tab {
+      margin-top: 60px;
+      margin-left: 0;
+    }
+    @include sp {
+      margin-top: 40px;
+    }
+    p {
+      font-size: 1.6rem;
+    }
+  }
+  &__box-2 {
+    margin-top: 180px;
+    margin-left: 10px;
+
+    @include tab {
+      margin-top: 80px;
+      margin-left: 0;
+    }
+    @include sp {
+      margin-top: 40px;
+    }
+    p {
+      font-size: 1.6rem;
+    }
+  }
+  img {
+    margin-top: 30px;
+    max-width: 520px;
+    max-height: 350px;
+  }
+  p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: $font_yu;
+  }
+}
+
+.topics {
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  @include tab {
+    margin: 40px 30px;
+  }
+  @include sp {
+    margin: 40px 15px;
+  }
+  h2 {
+    @include sp {
+      margin-bottom: 10px;
+    }
+  }
+  &__content {
+    margin-bottom: 30px;
+    margin-left: auto;
+    max-width: 700px;
+
+    @include tab {
+      margin-left: 0;
+    }
+    &--date {
+      display: block;
+      margin-top: 32px;
+      color: $font-gray;
+      letter-spacing: 0.15px;
+      font-weight: bold;
+      font-size: 1rem;
+      font-family: $font_mont;
+
+      @include sp {
+        margin-top: 22px;
+      }
+    }
+    &--text {
+      margin-top: 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #dddddd;
+      color: $font-black;
+      font-weight: bold;
+      font-size: 1.4rem;
+      font-family: $font_yu;
+
+      @include sp {
+        margin-top: 11px;
+        padding-bottom: 10px;
+      }
+    }
+    &--text1 {
+      letter-spacing: 0.06px;
+    }
+    &--text2,
+    &--text3 {
+      letter-spacing: 0.01px;
+    }
+  }
+  &__btn {
+    text-align: right;
+
+    @include tab {
+      text-align: left;
+    }
+  }
+}
+
+.contact {
+  padding-top: 60px;
+  padding-bottom: 120px;
+  background-color: $bg-gray2;
+
+  @include tab {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+  @include sp {
+    padding-bottom: 40px;
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include tab {
+      align-items: flex-start;
+      flex-direction: column-reverse;
+      margin: 0 30px;
+    }
+    @include sp {
+      margin: 0 15px;
+    }
+    img {
+      max-width: 580px;
+      max-height: 390px;
+    }
+  }
+  &__text {
+    max-width: 440px;
+    h2 {
+      @include tab {
+        margin-top: 30px;
+      }
+    }
+    p {
+      margin: 30px 0;
+      color: $font-black;
+      font-size: 1.6rem;
+      font-family: $font_yu;
+      line-height: 2;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: $footer-gray;
+  p {
+    color: $font-white;
+    letter-spacing: 0.15px;
+    font-size: 1rem;
+    font-family: $font_mont;
+  }
+}
+
+/* about.html */
+.about-top {
+  &__bg-img {
+    position: relative;
+    z-index: 2;
+    width: 77vw;
+    height: 43vh;
+    background-image: url(../img/about-heading-img.jpg);
+    background-position: center;
+    background-size: cover;
+
+  }
+  &__text {
+    position: absolute;
+    top: 17.3vh;
+    right: 0;
+    z-index: 3;
+    white-space: nowrap;
+    transform: translateX(50%);
+
+    @include tab {
+      transform: translateX(33%);
+    }
+    @include sp {
+      transform: translateX(20%);
+    }
+    &--top {
+      color: $font-white;
+      letter-spacing: 4.54px;
+      font-weight: bold;
+      font-size: 7.2rem;
+      font-family: $font_mont;
+
+      @include tab {
+        font-size: 5.2rem;
+      }
+      @include sp {
+        letter-spacing: 0;
+      }
+    }
+    &--bottom {
+      color: $font-white;
+      letter-spacing: 0.1px;
+      font-weight: bold;
+      font-size: 2rem;
+      font-family: $font_noto;
+
+      @include tab {
+        font-size: 1.6rem;
+      }
+    }
+  }
+  &__background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 54vw;
+    height: 51vh;
+    background-color: $header-black;
+  }
+}
+
+.feature {
+  &__content {
+    margin-top: 197px;
+    margin-right: 20%;
+    margin-left: 20.8%;
+
+    @include tab {
+      margin-top: 166px;
+    }
+    @include sp {
+      margin-top: 142px;
+      margin-right: 15px;
+      margin-left: 15px;
+    }
+    h3 {
+      margin-top: 30px;
+      letter-spacing: 0.12px;
+      font-weight: bold;
+      font-size: 2.4rem;
+      font-family: $font_yu;
+    }
+    p {
+      margin-top: 30px;
+      color: $font-black;
+      font-weight: bold;
+      font-size: 1.6rem;
+      font-family: $font_noto;
+      line-height: 2;
+
+      @include tab {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+.message {
+  &__img {
+    padding-right: 35px;
+
+    @include tab {
+      padding-left: 20px;
+    }
+    @include sp {
+      padding-left: 0;
+    }
+    img {
+      margin-top: 120px;
+      max-width: 420px;
+      width: 100%;
+
+      @include tab {
+        margin-top: 80px;
+      }
+    }
+  }
+  &__content {
+    margin-top: -138px;
+    margin-left: 30%;
+    padding: 120px 185px 90px 185px;
+    background-color: $bg-gray1;
+
+    @include tab {
+      margin: -100px 30px 0 100px;
+      padding: 130px 40px 78px 40px;
+    }
+    @include sp {
+      margin-right: 15px;
+      margin-left: 15px;
+    }
+    p {
+      margin-top: 30px;
+      color: $font-black;
+      font-weight: bold;
+      font-size: 1.6rem;
+      font-family: $font_noto;
+      line-height: 2;
+    }
+  }
+}
+
+.info {
+  margin-top: 120px;
+
+  @include tab {
+    margin-top: 80px;
+    padding: 0 30px;
+  }
+  @include sp {
+    padding: 0 15px;
+  }
+  h2 {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #dddddd;
+  }
+  &__list {
+    margin-left: auto;
+    max-width: 800px;
+    color: $font-black;
+    div {
+      display: flex;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #dddddd;
+    }
+    &--left {
+      width: 144px;
+      letter-spacing: 0.06px;
+      font-weight: bold;
+      font-size: 1.6rem;
+      font-family: $font_yu;
+
+      @include sp {
+        font-size: 1.4rem;
+      }
+    }
+    &--right {
+      letter-spacing: 0.06px;
+      font-size: 1.6rem;
+      font-family: $font_yu;
+
+      @include sp {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+.map {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto 120px auto;
+
+  @include tab {
+    margin-bottom: 80px;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  @include sp {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  iframe {
+    max-width: 1100px;
+    width: 100%;
+
+    @include sp {
+      height: 470px;
+    }
+  }
+}
+
+/* contact.html */
+.contact-top {
+  &__bg-img {
+    position: relative;
+    z-index: 2;
+    width: 77vw;
+    height: 43vh;
+    background-image: url(../img/contact-heading-img.jpg);
+    background-position: center;
+    background-size: cover;
+  }
+  &__text {
+    position: absolute;
+    top: 17.3vh;
+    right: 0;
+    z-index: 3;
+    white-space: nowrap;
+    transform: translateX(50%);
+
+    @include tab {
+      transform: translateX(33%);
+    }
+    @include sp {
+      transform: translateX(20%);
+    }
+    &--top {
+      color: $font-white;
+      letter-spacing: 4.54px;
+      font-weight: bold;
+      font-size: 7.2rem;
+      font-family: $font_mont;
+
+      @include tab {
+        font-size: 5.2rem;
+      }
+    }
+    &--bottom {
+      color: $font-white;
+      letter-spacing: 0.1px;
+      font-weight: bold;
+      font-size: 2rem;
+      font-family: $font_noto;
+
+      @include tab {
+        font-size: 1.6rem;
+      }
+    }
+  }
+  &__background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 54vw;
+    height: 51vh;
+    background-color: $header-black;
+  }
+}
+input,
+textarea {
+  width: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form {
+  margin: 184px auto 120px auto;
+  max-width: 700px;
+
+  @include tab {
+    padding: 0 50px;
+  }
+  @include sp {
+    padding: 0 15px;
+  }
+  &__announce {
+    color: $font-black;
+    letter-spacing: 0.004em;
+    font-size: 1.6rem;
+    font-family: $font_noto;
+    line-height: 1.5;
+
+    @include sp {
+      font-size: 1.4rem;
+      font-family: $font_yu;
+    }
+  }
+  &__list {
+    margin-top: 10px;
+  }
+  &__item {
+    margin-top: 45px;
+  }
+  &__title {
+    margin-bottom: 10px;
+    color: $font-black;
+    letter-spacing: 0.004em;
+    font-weight: bold;
+    font-size: 1.6rem;
+    font-family: $font_noto;
+
+    @include sp {
+      font-weight: bold;
+      font-family: $font_yu;
+    }
+    label {
+      color: $font-black;
+      letter-spacing: 0.004em;
+      font-weight: bold;
+      font-size: 1.6rem;
+      font-family: $font_noto;
+
+      @include sp {
+        font-weight: bold;
+        font-family: $font_yu;
+      }
+    }
+    span {
+      margin-left: 6px;
+      padding: 3px 5px;
+      background-color: $font-black;
+      color: $font-white;
+      font-size: 1.2rem;
+    }
+  }
+  &__radio {
+    display: flex;
+
+    @media screen and (max-width: 594px) {
+      flex-direction: column;
+    }
+    &--content {
+      margin-top: 10px;
+
+      @include sp {
+        margin-top: 15px;
+      }
+    }
+    input {
+      margin: 0 10px;
+      width: 20px;
+      height: 20px;
+      border: 1px solid $font-black;
+      border-radius: 50%;
+      &:checked {
+        border: 4px solid #fff;
+        background-color: $font-black;
+        box-shadow: 0 0 0 1px #333;
+      }
+    }
+    &--text {
+      margin-right: 40px;
+      color: $font-black;
+      vertical-align: middle;
+      letter-spacing: 0.004;
+      font-size: 1.6rem;
+      font-family: $font_yu;
+    }
+  }
+  &__text-box {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid $font-black;
+  }
+  textarea {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid $font-black;
+  }
+  &__privacy-policy {
+    margin-top: 40px;
+    h3 {
+      color: $font-black;
+      letter-spacing: 0.004em;
+      font-weight: bold;
+      font-size: 1.6rem;
+      font-family: $font_mont;
+    }
+    p {
+      overflow: scroll;
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      height: 252px;
+      border: 1px solid $font-black;
+      color: $font-black;
+      letter-spacing: 0.004em;
+      font-size: 1.6rem;
+      font-family: $font_noto;
+      line-height: 1.5;
+
+      @include sp {
+        font-size: 1.4rem;
+        font-family: $font_yu;
+      }
+    }
+  }
+  &__checkbox {
+    display: flex;
+    justify-content: center;
+    margin-top: 43px;
+    input {
+      margin: 0;
+      width: 20px;
+      height: 20px;
+      border: 1px solid $font-black;
+
+      @include sp {
+        width: 15px;
+        height: 15px;
+      }
+      &:checked {
+        background-image: url(../img/check.svg);
+        background-position: center;
+        background-size: 16px;
+        background-repeat: no-repeat;
+      }
+    }
+    label {
+      margin-left: 10px;
+      color: $font-black;
+      letter-spacing: 0.004em;
+      font-size: 1.6rem;
+      font-family: $font_noto;
+
+      @include sp {
+        margin-left: 8px;
+        font-size: 1.3rem;
+      }
+    }
+  }
+  &__submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 41px;
+    input {
+      padding: 0;
+      width: 160px;
+      height: 36px;
+      background-color: #000;
+      color: $font-white;
+      font-weight: bold;
+      font-size: 1.4rem;
+      font-family: $font_mont;
+      line-height: 36px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
